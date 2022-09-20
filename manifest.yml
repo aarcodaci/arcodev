@@ -1,6 +1,6 @@
 applications:
-- name: httpserver
+- name: mainhttp
   buildpack: https://github.com/aarcodaci/arcodev.git
   memory: 256M
   env:
-     GOPACKAGENAME: httpserver
+     GOPACKAGENAME: main
