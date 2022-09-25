@@ -54,6 +54,7 @@ func getAllEvents(w http.ResponseWriter, _ *http.Request) {
 	var _ = json.NewEncoder(w).Encode(events)
 }
 func main() {
+	port := os.Getenv("PORT")
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", homeLink)
 	router.HandleFunc("/kitchen", homeLink)
@@ -61,5 +62,5 @@ func main() {
 	router.HandleFunc("/event2", createEvent).Methods("POST")
 	router.HandleFunc("/event3", createEvent).Methods("POST")
 	router.HandleFunc("/events", getAllEvents).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
