@@ -1,1 +1,1 @@
-web: http-golang
+web: bin/arcodev
