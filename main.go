@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-	
+
 	"github.com/gorilla/mux"
 )
 
@@ -49,7 +49,7 @@ func createEvent(w http.ResponseWriter, r *http.Request) {
 }
 func homeLink(w http.ResponseWriter, _ *http.Request) {
 
-	_, _ = fmt.Fprintf(w, "Welcome home!")
+	_, _ = fmt.Fprintf(w, "Comming Soon!")
 }
 func getAllEvents(w http.ResponseWriter, _ *http.Request) {
 	var _ = json.NewEncoder(w).Encode(events)
