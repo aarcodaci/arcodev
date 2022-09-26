@@ -1,6 +1,6 @@
 ---
 applications:
-- name: mainhttp
+- name: arcodev
   buildpack: https://github.com/cloudfoundry/go-buildpack.git
   memory: 256M
   env:
