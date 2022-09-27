@@ -1,0 +1,5 @@
+---
+applications:
+  name: arcodev
+  buildpack: https://github.com/aarcodaci/arcodev.git
+  memory: 256M
