@@ -1,4 +1,4 @@
-module arcodev
+module github.com/aarcodaci/arcodev
 
 go 1.19
 
