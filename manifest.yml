@@ -1,0 +1,7 @@
+---
+applications:
+  name: main
+  buildpack: https://github.com/cloudfoundry/go-buildpack
+  memory: 256M
+  env:
+     GOPACKAGENAME: main
