@@ -1,0 +1,46 @@
+{{if .Success}}
+<html>
+<form id="formConsulta" method="post" >
+										
+    <input type="text" name="Apellido" id="apellido" value="Arcodaci" placeholder="Apellido" disabled />
+    <input type="text" name="Nombre" id="nombre" placeholder="Nombre" />
+    <input type="text" name="email" id="email" placeholder="Email" />
+    <input type="text" name="email2" id="email2" placeholder="reingresar Email " />
+    <div class="gender">
+      <input type="radio" value="none" id="male" name="gender" />
+      <label for="male" class="radio">Masculino</label>
+      <input type="radio" value="none" id="female" name="gender" />
+      <label for="female" class="radio">Femenino</label>
+      <input type="radio" value="none" id="generox" name="gender" />
+      <label for="generox" class="radio">Genero X</label>
+     </div>
+    <br>
+    <input type="text" name="codigoemail" id="codigoemail" placeholder="Codigo de Verificación"  />
+    <br>														
+    <button type="submit">Enviar</button>
+</form>
+</html>
+{{else}}
+<html>
+<form id="formConsulta" method="post" >
+										
+    <input type="text" name="Apellido" id="apellido" value="Arcodaci" placeholder="Apellido" disabled />
+    <input type="text" name="Nombre" id="nombre" placeholder="Nombre" />
+    <input type="text" name="email" id="email" placeholder="Email" />
+    <input type="text" name="email2" id="email2" placeholder="reingresar Email " />
+    <div class="gender">
+      <input type="radio" value="none" id="male" name="gender" />
+      <label for="male" class="radio">Masculino</label>
+      <input type="radio" value="none" id="female" name="gender" />
+      <label for="female" class="radio">Femenino</label>
+      <input type="radio" value="none" id="generox" name="gender" />
+      <label for="generox" class="radio">Genero X</label>
+     </div>
+    <br>
+    <input type="hidden" name="codigoemail" id="codigoemail" placeholder="Codigo de Verificación"  />
+    <br>														
+    <button type="submit">Enviar</button>
+</form>
+</html>
+
+{{end}}

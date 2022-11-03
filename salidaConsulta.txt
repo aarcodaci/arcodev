@@ -1,0 +1,8 @@
+{
+  "Apellido": "",
+  "Nombre": "",
+  "email": "",
+  "email2": "",
+  "genero": "",
+  "codigoemail": ""
+ }

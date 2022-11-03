@@ -1,0 +1,8 @@
+{
+  "Apellido": "Arcodaci",
+  "Nombre": "Alejandro",
+  "email": "aarcodaci@gmail.com",
+  "email2": "aarcodaci@gmail.com",
+  "genero": "M",
+  "codigoemail": "3223"
+ }
