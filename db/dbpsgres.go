@@ -42,10 +42,6 @@ func DoPostgress() {
 	err = db.Ping()
 	CheckError(err)
 
-	insertSql := "INSERT INTO arcodev.cam_user_mails(email, apellido, nombre, alta_fh, verified_code, varified_status) 		VALUES (?, ?, ?, ?, ?, ?);"
-
-	_, err = db.Exec(insertSql, "a")
-	CheckError(err)
 }
 
 func CheckError(err error) {

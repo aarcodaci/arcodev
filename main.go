@@ -33,11 +33,11 @@ func renderTemplate2(w http.ResponseWriter, tmpl string, p any) {
 	}
 }
 
-func insertContact(dbc *sql.DB) {
+func insertContact(dbc *sql.DB, datos consulta) {
 
-	insertSql := "INSERT INTO arcodev.cam_user_mails(email, apellido, nombre, alta_fh, verified_code, varified_status) 		VALUES (?, ?, ?, ?, ?, ?);"
+	insertSql := "INSERT INTO arcodev.cam_user_mails(email, apellido, nombre, alta_fh, verified_code, varified_status) 		VALUES ($1, $2, $3, CURRENT_TIMESTAMP, $4, $5)"
 
-	_, err := dbc.Exec(insertSql, "a")
+	_, err := dbc.Exec(insertSql, datos.Email, datos.Apellido, datos.Nombre, datos.Codigoemail, "OK")
 	db.CheckError(err)
 }
 
@@ -62,10 +62,10 @@ func presentarFormConsulta2(w http.ResponseWriter, r *http.Request) {
 	}
 	renderTemplate2(w, "registermail", details)
 
-	if verifcode != "" {
-		enviarMail(details.Email, "Codigo de verificación de mail", "El código generado es "+verifcode)
-	}
-
+	/*	if verifcode != "" {
+			enviarMail(details.Email, "Codigo de verificación de mail", "El código generado es "+verifcode)
+		}
+	*/
 	//	if r.Method != http.MethodPost {
 	//tmpl.Execute(w, details)
 	//return
@@ -99,9 +99,10 @@ func enviarMail(mailto string, subject string, texto string) {
 	msg.SetBody("text/html", texto)
 	//msg.Attach("/home/User/cat.jpg")
 
-	n := gomail.NewDialer("smtp.gmail.com", 587, "arcobook@gmail.com", "aatqmqrofcdhtsay")
-
+	n := gomail.NewDialer("smtp.gmail.com", 587, "arcobook@gmail.com", "AleBook01")
+	//aatqmqrofcdhtsay
 	// Send the email
+
 	if err := n.DialAndSend(msg); err != nil {
 		panic(err)
 	}
@@ -120,23 +121,10 @@ func registrarConsulta(w http.ResponseWriter, r2 *http.Request) {
 	}
 	renderTemplate2(w, "verifiedmail", details)
 
-	//	if r.Method != http.MethodPost {
-	//tmpl.Execute(w, details)
-	//return
-	//	}
+	db := db.DbConnect()
+	defer db.Close()
 
-	// do something with details
-	outputFile := "salidaConsulta3.txt"
-	var err error
-	var jsonConsutlaTxt []byte
-	jsonConsutlaTxt, err = json.MarshalIndent(details, " ", " ")
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = os.WriteFile(outputFile, jsonConsutlaTxt, 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
+	insertContact(db, details)
 
 }
 
