@@ -62,10 +62,11 @@ func presentarFormConsulta2(w http.ResponseWriter, r *http.Request) {
 	}
 	renderTemplate2(w, "registermail", details)
 
-	/*	if verifcode != "" {
-			enviarMail(details.Email, "Codigo de verificación de mail", "El código generado es "+verifcode)
-		}
-	*/
+	if verifcode != "" {
+		enviarMail(details.Email, "Codigo de verificación de mail", "El código generado es "+verifcode)
+
+	}
+
 	//	if r.Method != http.MethodPost {
 	//tmpl.Execute(w, details)
 	//return
@@ -99,7 +100,7 @@ func enviarMail(mailto string, subject string, texto string) {
 	msg.SetBody("text/html", texto)
 	//msg.Attach("/home/User/cat.jpg")
 
-	n := gomail.NewDialer("smtp.gmail.com", 587, "arcobook@gmail.com", "AleBook01")
+	n := gomail.NewDialer("smtp.gmail.com", 587, "arcobook@gmail.com", "hixmaeoqaxifomhs")
 	//aatqmqrofcdhtsay
 	// Send the email
 
@@ -135,7 +136,7 @@ func homeLink(w http.ResponseWriter, _ *http.Request) {
 }
 */
 
-var templates = template.Must(template.ParseFiles("mainpage.html", "registermail.html", "verifiedmail.html"))
+var templates = template.Must(template.ParseFiles("libros.html", "mainpage.html", "registermail.html", "verifiedmail.html"))
 
 func renderTemplate(w http.ResponseWriter, tmpl string, rep any) {
 
@@ -147,6 +148,11 @@ func renderTemplate(w http.ResponseWriter, tmpl string, rep any) {
 func ppalHandler(w http.ResponseWriter, r *http.Request) {
 
 	renderTemplate(w, "mainpage", nil)
+}
+
+func librosHandler(w http.ResponseWriter, r *http.Request) {
+
+	renderTemplate(w, "libros", nil)
 }
 
 //var validPath = regexp.MustCompile("^/(edit|save|view|ppal|assets|registermail|mainpage)/([a-zA-Z0-9]+)$")
@@ -187,7 +193,9 @@ func main() {
 		router.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("./"))))
 	*/
 	//	http.HandleFunc("/contactForm/", makeHandler(contactFormHandler))
+	http.HandleFunc("/", makeHandler(ppalHandler))
 	http.HandleFunc("/mainpage/", makeHandler(ppalHandler))
+	http.HandleFunc("/libros/", makeHandler(librosHandler))
 	http.HandleFunc("/register/", makeHandler(presentarFormConsulta2))
 	http.HandleFunc("/verified/", makeHandler(registrarConsulta))
 
