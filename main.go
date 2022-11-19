@@ -136,7 +136,7 @@ func homeLink(w http.ResponseWriter, _ *http.Request) {
 }
 */
 
-var templates = template.Must(template.ParseFiles("libros.html", "mainpage.html", "registermail.html", "verifiedmail.html"))
+var templates = template.Must(template.ParseFiles("quiensoy.html", "testimonios.html", "libros.html", "mainpage.html", "registermail.html", "verifiedmail.html"))
 
 func renderTemplate(w http.ResponseWriter, tmpl string, rep any) {
 
@@ -153,6 +153,15 @@ func ppalHandler(w http.ResponseWriter, r *http.Request) {
 func librosHandler(w http.ResponseWriter, r *http.Request) {
 
 	renderTemplate(w, "libros", nil)
+}
+
+func quiensoyHandler(w http.ResponseWriter, r *http.Request) {
+
+	renderTemplate(w, "quiensoy", nil)
+}
+func testimoniosHandler(w http.ResponseWriter, r *http.Request) {
+
+	renderTemplate(w, "testimonios", nil)
 }
 
 //var validPath = regexp.MustCompile("^/(edit|save|view|ppal|assets|registermail|mainpage)/([a-zA-Z0-9]+)$")
@@ -196,6 +205,8 @@ func main() {
 	http.HandleFunc("/", makeHandler(ppalHandler))
 	http.HandleFunc("/mainpage/", makeHandler(ppalHandler))
 	http.HandleFunc("/libros/", makeHandler(librosHandler))
+	http.HandleFunc("/quiensoy/", makeHandler(quiensoyHandler))
+	http.HandleFunc("/testimonios/", makeHandler(testimoniosHandler))
 	http.HandleFunc("/register/", makeHandler(presentarFormConsulta2))
 	http.HandleFunc("/verified/", makeHandler(registrarConsulta))
 
